@@ -14,7 +14,22 @@ require("dotenv").config();
 require('./connection/connection')
 const User=require("./routes/user")
 
-app.use(cors());
+app.use(
+    cors({
+      origin: "https://books-heaven-ji3bsbplr-ashutosh-sharmas-projects-ee076433.vercel.app",
+      methods: "GET,POST,PUT,DELETE",
+      allowedHeaders: "Content-Type,Authorization",
+    })
+  );
+
+  app.get("/api/v1/recent-all-book", (req, res) => {
+    res.json({ message: "CORS enabled!" });
+  });
+  
+  app.listen(5000, () => {
+    console.log("Server running on port 5000");
+  });
+
 app.use(express.json());
 
 
